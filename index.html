@@ -243,7 +243,7 @@ table.jt tr:hover td{background:#f9fafb}
     <div class="card"><h3>Violações FRT por Agente OPS</h3><div class="cwrap2"><canvas id="c1_rt_ag"></canvas></div></div>
   </div>
   <div class="card"><h3>Evolução Mensal — Tickets FRT &gt;48h por Destino</h3><div class="cwrap"><canvas id="c1_rt_trend"></canvas></div></div>
-  <div class="card"><h3>SLA 48h % — real vs sem casos escalados (por agente OPS) <span style="font-size:.6rem;color:#aaa">verde = hipotético sem escalamentos</span></h3><div class="cwrap2"><canvas id="c1_rt_sla_cmp"></canvas></div></div>
+  <div class="card"><h3>SBS OPS — SLA 48h % real vs hipotético sem casos escalados <span style="font-size:.6rem;color:#aaa">verde tracejado = sem os tickets que foram para Billing/Jira</span></h3><div class="cwrap"><canvas id="c1_rt_sla_cmp"></canvas></div></div>
 </div>
 
 <!-- TAB 2: Por Agente -->
@@ -1886,19 +1886,20 @@ function rRouting1(){
       {label:'Jira / Side Conv.',data:rtMos.map(function(m){return ROUTING_DATA.filter(function(r){return r.mo===m&&!r.bBil&&!r.gBil;}).length||null;}),backgroundColor:'#a78bfaAA',stack:'s'}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true}}}});
   }
-  /* SLA por agente: real vs sem escalados */
-  var opsAgsCmp=AGENTS.filter(function(a){return a.tribe==='OPS'&&fRows(function(r){return r.k===a.key;}).length>0;});
-  if(opsAgsCmp.length){
-    var slaReal=opsAgsCmp.map(function(a){var s=agg(fRows(function(x){return x.k===a.key;}));return s.vol>0?pct(s.f48,s.vol):null;});
-    var slaSem=opsAgsCmp.map(function(a){
-      var s=agg(fRows(function(x){return x.k===a.key;}));
-      var nRt=rt.filter(function(x){return x.k===a.key;}).length;
+  /* SLA OPS (time) por mês: real vs sem escalados — período filtrado */
+  var opsMosFlt=getPeriods().filter(function(p){return ROWS.some(function(r){return r.tb==='OPS'&&moIn(p,r.mo);});});
+  if(opsMosFlt.length){
+    var slaOpsRealFlt=opsMosFlt.map(function(p){var s=agg(ROWS.filter(function(r){return r.tb==='OPS'&&moIn(p,r.mo);}));return s.vol>0?pct(s.f48,s.vol):null;});
+    var slaOpsSemFlt=opsMosFlt.map(function(p){
+      var s=agg(ROWS.filter(function(r){return r.tb==='OPS'&&moIn(p,r.mo);}));
+      var nRt=rt.filter(function(r){return moIn(p,r.mo);}).length;
       var vAdj=s.vol-nRt;
       return vAdj>0?Math.min(100,Math.round(s.f48/vAdj*1000)/10):s.vol>0?100:null;
     });
-    mk('c1_rt_sla_cmp',{type:'bar',data:{labels:opsAgsCmp.map(function(a){return a.name.split(' ')[0];}),datasets:[
-      {label:'SLA real (%)',data:slaReal,backgroundColor:opsAgsCmp.map(function(a){return a.color+'BB';}),borderRadius:4,borderSkipped:false},
-      {label:'SLA sem escalados (%)',data:slaSem,backgroundColor:opsAgsCmp.map(function(){return'#22c55e77';}),borderRadius:4,borderSkipped:false,borderWidth:2,borderColor:opsAgsCmp.map(function(){return'#16a34a';})}
+    mk('c1_rt_sla_cmp',{type:'line',data:{labels:opsMosFlt.map(function(p){return p.label;}),datasets:[
+      {label:'SLA OPS real (%)',data:slaOpsRealFlt,borderColor:'#0066CC',backgroundColor:'rgba(0,102,204,0.08)',tension:.3,pointRadius:4,fill:true,borderWidth:2},
+      {label:'SLA sem escalados (%)',data:slaOpsSemFlt,borderColor:'#16a34a',backgroundColor:'rgba(22,163,74,0.06)',tension:.3,pointRadius:4,fill:true,borderWidth:2,borderDash:[5,3]},
+      {label:'Meta 95%',data:opsMosFlt.map(function(){return 95;}),borderColor:'rgba(239,68,68,0.4)',borderDash:[4,4],borderWidth:1.5,pointRadius:0,fill:false,_noLbl:true}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},
       scales:{x:{grid:{display:false}},y:{min:0,max:100,ticks:{callback:function(v){return v+'%';},font:{size:9}}}}}});
   }
