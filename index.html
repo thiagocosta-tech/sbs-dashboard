@@ -855,7 +855,7 @@ function dlNegCSAT(){
 ═══════════════════════════════════════════════════════════════════ */
 function rT1(){
   mf();
-  var periods=getPeriods();
+  var periods=getPeriods().filter(function(p){return fRows(function(r){return moIn(p,r.mo);}).length>0;});
   var r=fRows(); var tot=agg(r);
   var sla=pct(tot.f48,tot.vol);
   var csat=pct(tot.csOk,tot.csVol);
@@ -1167,8 +1167,8 @@ function rT2(){
   if(!curAg2&&AGENTS.length>0)curAg2=AGENTS[0].key;
   var ag=AGENTS.find(function(a){return a.key===curAg2;});
   if(!ag)return;
-  var periods=getPeriods();
   var agR=fRows(function(r){return r.k===curAg2;});
+  var periods=getPeriods().filter(function(p){return agR.some(function(r){return moIn(p,r.mo);});});
   var tot=agg(agR);
   var sla=pct(tot.f48,tot.vol); var csat=pct(tot.csOk,tot.csVol);
   var frt8=pct(tot.f8,tot.vol); var reop=tot.vol>0?pct(tot.rp,tot.vol):null;
@@ -1328,7 +1328,7 @@ function rT2(){
       '<div class="kpi or"><div class="v" style="color:'+frt8Clr(jFrt8_2)+'">'+fmtPct(jFrt8_2)+'</div><div class="l">FRT 8h Jira</div><div class="tg">concluídas em ≤8h</div></div>';
     }
     /* Stacked bar by period */
-    var pJ=getPeriods();
+    var pJ=getPeriods().filter(function(p){return agJira.some(function(j){return moIn(p,j.mo);});});
     var pJL=pJ.map(function(p){return p.label;});
     mk('c2_jira',{type:'bar',data:{labels:pJL,datasets:[
       barDs('Concluído',pJ.map(function(p){return agJira.filter(function(j){return moIn(p,j.mo)&&j.d;}).length||null;}), '#27AE60'),
@@ -1784,7 +1784,7 @@ function rT3(){
 ═══════════════════════════════════════════════════════════════════ */
 function rT4(){
   mf();
-  var periods=getPeriods();
+  var periods=getPeriods().filter(function(p){return fRows(function(r){return moIn(p,r.mo);}).length>0;});
   var tEl=document.getElementById('h_table');
   if(tEl){
     var html='<table class="dt"><thead><tr>'+
