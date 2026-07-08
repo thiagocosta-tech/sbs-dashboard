@@ -229,6 +229,11 @@ table.jt tr:hover td{background:#f9fafb}
   </div>
   <div class="sec" data-i18n="sec_pulse">Último Período — Visão por Subtime</div>
   <div class="pulse-grid" id="pulse1"></div>
+  <div class="sec">Escalações OPS — Tickets FRT &gt;48h <span style="font-size:.65rem;color:#aaa;font-weight:400">(amostra: apenas tickets que violaram SLA)</span></div>
+  <div class="krow" id="k1_routing"></div>
+  <div class="card"><h3>Destino das Escalações OPS (primário)</h3><div class="cwrap2" style="max-width:380px;margin:0 auto"><canvas id="c1_rt_dest"></canvas></div></div>
+  <div class="card"><h3>Evolução Mensal — Tickets FRT &gt;48h por Destino</h3><div class="cwrap"><canvas id="c1_rt_trend"></canvas></div></div>
+  <div class="card"><h3>SBS OPS — SLA 48h % real vs hipotético sem casos escalados <span style="font-size:.6rem;color:#aaa">verde tracejado = sem os tickets que foram para Billing/Jira</span></h3><div class="cwrap"><canvas id="c1_rt_sla_cmp"></canvas></div></div>
   <div class="sec" data-i18n="sec_jira">Produtividade Jira — Visão Geral</div>
   <div class="krow" id="k1_jira"></div>
   <div class="card"><h3>Jira — Volume Mensal + SLA 48h % + Ciclo Médio (h) <span style="font-size:.62rem;color:#aaa">metas SLA: 95% · ciclo: 8h · 48h</span></h3><div class="cwrap-main"><canvas id="c1_jira_vol"></canvas></div></div>
@@ -236,11 +241,6 @@ table.jt tr:hover td{background:#f9fafb}
     <div class="card"><h3>Tarefas Concluídas por Subtime (período filtrado)</h3><div class="cwrap"><canvas id="c1_jira_ag"></canvas></div></div>
     <div class="card"><h3>Tempo Médio de Ciclo por Subtime (dias)</h3><div class="cwrap"><canvas id="c1_jira_rt"></canvas></div></div>
   </div>
-  <div class="sec">Escalações OPS — Tickets FRT &gt;48h <span style="font-size:.65rem;color:#aaa;font-weight:400">(amostra: apenas tickets que violaram SLA)</span></div>
-  <div class="krow" id="k1_routing"></div>
-  <div class="card"><h3>Destino das Escalações OPS (primário)</h3><div class="cwrap2" style="max-width:380px;margin:0 auto"><canvas id="c1_rt_dest"></canvas></div></div>
-  <div class="card"><h3>Evolução Mensal — Tickets FRT &gt;48h por Destino</h3><div class="cwrap"><canvas id="c1_rt_trend"></canvas></div></div>
-  <div class="card"><h3>SBS OPS — SLA 48h % real vs hipotético sem casos escalados <span style="font-size:.6rem;color:#aaa">verde tracejado = sem os tickets que foram para Billing/Jira</span></h3><div class="cwrap"><canvas id="c1_rt_sla_cmp"></canvas></div></div>
 </div>
 
 <!-- TAB 2: Por Agente -->
@@ -262,6 +262,15 @@ table.jt tr:hover td{background:#f9fafb}
     <div class="card"><h3>Tempo Médio de Resolução Zendesk (h)</h3><div class="cwrap"><canvas id="c2_rt_zd"></canvas></div></div>
   </div>
   <div class="card"><h3>Participação de Volume — % do SBS total e da Subárea</h3><div class="cwrap-main"><canvas id="c2_vol_share"></canvas></div></div>
+  <div id="p2_routing_wrap">
+    <div class="sec">Escalações FRT &gt;48h — Este Agente</div>
+    <div class="krow" id="k2_routing"></div>
+    <div class="grid2">
+      <div class="card"><h3>SLA 48h % — com vs sem casos escalados <span style="font-size:.6rem;color:#aaa">linha = N casos escalados</span></h3><div class="cwrap"><canvas id="c2_rt_sla_cmp"></canvas></div></div>
+      <div class="card"><h3>Resolução média (h) — normal vs escalado <span style="font-size:.6rem;color:#aaa">metas 8h · 48h</span></h3><div class="cwrap"><canvas id="c2_rt_res_cmp"></canvas></div></div>
+    </div>
+    <div class="card"><h3>Violações FRT por Mês e Destino</h3><div class="cwrap2"><canvas id="c2_rt_bar"></canvas></div></div>
+  </div>
   <div id="p2_jira_wrap">
     <div class="sec" data-i18n="sec_jira_ag">Produtividade Jira</div>
     <div class="krow" id="k2_jira"></div>
@@ -279,15 +288,6 @@ table.jt tr:hover td{background:#f9fafb}
   <div id="p2_cm_wrap">
     <div class="sec" data-i18n="sec_cm">Últimos Comentários CSAT</div>
     <div id="p2_cm_list"></div>
-  </div>
-  <div id="p2_routing_wrap">
-    <div class="sec">Escalações FRT &gt;48h — Este Agente</div>
-    <div class="krow" id="k2_routing"></div>
-    <div class="grid2">
-      <div class="card"><h3>SLA 48h % — com vs sem casos escalados <span style="font-size:.6rem;color:#aaa">linha = N casos escalados</span></h3><div class="cwrap"><canvas id="c2_rt_sla_cmp"></canvas></div></div>
-      <div class="card"><h3>Resolução média (h) — normal vs escalado <span style="font-size:.6rem;color:#aaa">metas 8h · 48h</span></h3><div class="cwrap"><canvas id="c2_rt_res_cmp"></canvas></div></div>
-    </div>
-    <div class="card"><h3>Violações FRT por Mês e Destino</h3><div class="cwrap2"><canvas id="c2_rt_bar"></canvas></div></div>
   </div>
 </div>
 
@@ -320,21 +320,23 @@ table.jt tr:hover td{background:#f9fafb}
 <!-- TAB 4: Historical Data -->
 <div id="p4" class="pg">
   <div class="vtog-bar" style="margin-bottom:8px">
-    <button class="vtog2" onclick="setView('monthly')"   data-vm="monthly"   data-i18n="f_monthly">Mensal</button>
     <button class="vtog2" onclick="setView('quarterly')" data-vm="quarterly" data-i18n="f_quarterly">Trimestral</button>
     <button class="vtog2" onclick="setView('anual')"     data-vm="anual"     data-i18n="f_anual">Anual</button>
   </div>
-  <div class="sec" data-i18n="sec_hist">Histórico Mensal — Todos os Períodos</div>
+  <div class="sec">Resumo Gerencial por Período</div>
   <div class="card" style="overflow-x:auto"><div id="h_table"></div></div>
-  <div class="sec" data-i18n="sec_sla_trend">Tendência SLA 48h por Time</div>
+  <div class="sec" data-i18n="sec_sla_trend">Tendência SLA 48h por Subtime</div>
   <div class="card"><div class="cwrap" style="height:280px"><canvas id="c4_trend"></canvas></div></div>
-  <div class="card"><h3>Volume Total por Mês + SLA 48h %</h3><div class="cwrap-main"><canvas id="c4_vol_total"></canvas></div></div>
-  <div class="card"><h3>Tendência CSAT por Time</h3><div class="cwrap"><canvas id="c4_csat_tribe"></canvas></div></div>
+  <div class="card"><h3>Volume por Subtime + SLA 48h % geral</h3><div class="cwrap-main"><canvas id="c4_vol_total"></canvas></div></div>
+  <div class="sec">CSAT — Visão Gerencial</div>
+  <div class="card"><h3>CSAT % por Subtime</h3><div class="cwrap"><canvas id="c4_csat_tribe"></canvas></div></div>
+  <div class="card"><h3>Score CSAT médio (1–5) por Subtime <span style="font-size:.6rem;color:#aaa">meta 4.0</span></h3><div class="cwrap"><canvas id="c4_csat_score"></canvas></div></div>
+  <div class="card" style="overflow-x:auto"><h3>Score CSAT médio por Subtime — tabela</h3><div id="h_csat_table"></div></div>
   <div class="sec">Escalações OPS — Histórico FRT &gt;48h</div>
-  <div class="card"><h3>Tickets Violadores por Mês e Destino</h3><div class="cwrap"><canvas id="c4_rt_trend"></canvas></div></div>
+  <div class="card"><h3>Tickets Violadores por Período e Destino</h3><div class="cwrap"><canvas id="c4_rt_trend"></canvas></div></div>
   <div class="card"><h3>SLA 48h % OPS — real vs hipotético sem escalados <span style="font-size:.6rem;color:#aaa">verde = sem os casos que foram para Billing/Jira</span></h3><div class="cwrap"><canvas id="c4_rt_sla_cmp"></canvas></div></div>
   <div class="grid2">
-    <div class="card"><h3>Hold médio mensal (h) — aguardando outro time</h3><div class="cwrap2"><canvas id="c4_rt_hold"></canvas></div></div>
+    <div class="card"><h3>Hold médio por período (h) — aguardando outro time</h3><div class="cwrap2"><canvas id="c4_rt_hold"></canvas></div></div>
     <div class="card"><h3>Resolução total vs Hold por Agente OPS</h3><div class="cwrap2"><canvas id="c4_rt_res"></canvas></div></div>
   </div>
 </div><script>/**
@@ -1825,6 +1827,48 @@ function rT4(){
   }).concat([metaLine(88,periods)])},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},scales:pctScale()}});
 
+  /* CSAT score médio (1-5) por subtime por período */
+  var _tbScDefs=[{tb:'OPS',lbl:'OPS',region:'BR'},{tb:'BILLING',lbl:'Billing',region:'BR'},{tb:'COLLECTION',lbl:'Collection',region:'BR'}];
+  mk('c4_csat_score',{type:'line',data:{labels:pLbls,datasets:_tbScDefs.map(function(t){
+    return lineDs(t.lbl,periods.map(function(p){
+      var arr=COMMENTS.filter(function(c){
+        var ag=AGENTS.find(function(a){return a.key===c.k;});
+        return ag&&ag.tribe===t.tb&&ag.region===t.region&&moIn(p,c.mo);
+      });
+      return arr.length>=3?Math.round(arr.reduce(function(s,c){return s+c.sc;},0)/arr.length*100)/100:null;
+    }),TRIBE_COLORS[t.tb],false,true);
+  }).concat([{type:'line',label:'Meta 4.0',data:periods.map(function(){return 4;}),
+    borderColor:'rgba(34,197,94,0.5)',borderDash:[4,4],borderWidth:1.5,pointRadius:0,fill:false,_noLbl:true}])},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},
+    scales:{x:{grid:{display:false}},y:{min:1,max:5,title:{display:true,text:'score',font:{size:9}},ticks:{stepSize:1}}}}});
+
+  /* Tabela CSAT score médio por subtime */
+  var _csatTEl=document.getElementById('h_csat_table');
+  if(_csatTEl){
+    var _csatTribes=[{tb:'OPS',lbl:'OPS',region:'BR'},{tb:'BILLING',lbl:'Billing',region:'BR'},{tb:'COLLECTION',lbl:'Collection',region:'BR'}];
+    var _csatHtml='<table class="dt"><thead><tr><th>Período</th>';
+    _csatTribes.forEach(function(t){_csatHtml+='<th style="color:'+TRIBE_COLORS[t.tb]+'">'+t.lbl+'<br><small style="font-weight:400;color:#aaa">CSAT% · Score</small></th>';});
+    _csatHtml+='<th>Geral<br><small style="font-weight:400;color:#aaa">CSAT% · Score</small></th></tr></thead><tbody>';
+    periods.forEach(function(p){
+      _csatHtml+='<tr><td><strong>'+p.label+'</strong></td>';
+      _csatTribes.forEach(function(t){
+        var rs=fRows(function(x){return moIn(p,x.mo)&&x.tb===t.tb&&x.rg===t.region;});
+        var s=agg(rs); var csatPct=pct(s.csOk,s.csVol);
+        var cms=COMMENTS.filter(function(c){var ag=AGENTS.find(function(a){return a.key===c.k;});return ag&&ag.tribe===t.tb&&ag.region===t.region&&moIn(p,c.mo);});
+        var score=cms.length>=3?Math.round(cms.reduce(function(a,c){return a+c.sc;},0)/cms.length*100)/100:null;
+        var cls=csatPct!=null?(csatPct>=88?'good':csatPct>=75?'warn':'bad'):'';
+        _csatHtml+='<td class="'+cls+'">'+(csatPct!=null?csatPct+'%':'—')+' · '+(score!=null?score:'—')+'</td>';
+      });
+      var rsAll=fRows(function(x){return moIn(p,x.mo);});
+      var sAll=agg(rsAll); var allPct=pct(sAll.csOk,sAll.csVol);
+      var cmsAll=COMMENTS.filter(function(c){var ag=AGENTS.find(function(a){return a.key===c.k;});return ag&&moIn(p,c.mo);});
+      var scoreAll=cmsAll.length>=3?Math.round(cmsAll.reduce(function(a,c){return a+c.sc;},0)/cmsAll.length*100)/100:null;
+      var clsAll=allPct!=null?(allPct>=88?'good':allPct>=75?'warn':'bad'):'';
+      _csatHtml+='<td class="'+clsAll+'">'+(allPct!=null?allPct+'%':'—')+' · '+(scoreAll!=null?scoreAll:'—')+'</td></tr>';
+    });
+    _csatTEl.innerHTML=_csatHtml+'</tbody></table>';
+  }
+
   mk('c4_vol_total',{type:'bar',data:{labels:pLbls,datasets:[
     barDs(T('c_vol_total'),periods.map(function(p){
       return fRows(function(r){return moIn(p,r.mo);}).reduce(function(a,r){return a+r.v;},0)||null;
@@ -1846,6 +1890,7 @@ function rT4(){
 function _rCur(){_TAB_FNS[_curTab-1]();}
 function sw(n){
   if(n===3&&_sess&&_sess.role==='agent')return;
+  if(n===4&&_viewMode==='monthly')setView('quarterly');
   _curTab=n;
   document.querySelectorAll('.pg').forEach(function(e){e.classList.remove('on');});
   document.querySelectorAll('.tb').forEach(function(e){e.classList.remove('on');});
