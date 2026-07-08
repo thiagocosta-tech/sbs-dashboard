@@ -337,7 +337,7 @@ table.jt tr:hover td{background:#f9fafb}
   <div class="card"><h3>SLA 48h % OPS — real vs hipotético sem escalados <span style="font-size:.6rem;color:#aaa">verde = sem os casos que foram para Billing/Jira</span></h3><div class="cwrap"><canvas id="c4_rt_sla_cmp"></canvas></div></div>
   <div class="grid2">
     <div class="card"><h3>Hold médio por período (h) — aguardando outro time</h3><div class="cwrap2"><canvas id="c4_rt_hold"></canvas></div></div>
-    <div class="card"><h3>Resolução total vs Hold por Agente OPS</h3><div class="cwrap2"><canvas id="c4_rt_res"></canvas></div></div>
+    <div class="card"><h3>OPS — Resolução média vs Hold por Período (h)</h3><div class="cwrap2"><canvas id="c4_rt_res"></canvas></div></div>
   </div>
 </div><script>/**
  * Skipped minification because the original files appears to be already minified.
@@ -2061,13 +2061,12 @@ function rRouting4(){
     data:rtMos.map(function(m){var a=ROUTING_DATA.filter(function(r){return r.mo===m&&r.hold>0;});return a.length?Math.round(a.reduce(function(s,r){return s+r.hold;},0)/a.length*10)/10:null;}),
     borderColor:'#F59E0B',backgroundColor:'rgba(245,158,11,0.08)',tension:.3,pointRadius:4,fill:true,borderWidth:2
   }]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},scales:{x:{grid:{display:false}},y:{title:{display:true,text:'horas',font:{size:10}}}}}});
-  var opsAgs=AGENTS.filter(function(a){return a.tribe==='OPS'&&ROUTING_DATA.some(function(r){return r.k===a.key;});});
-  if(opsAgs.length){
-    mk('c4_rt_res',{type:'bar',data:{labels:opsAgs.map(function(a){return a.name.split(' ')[0];}),datasets:[
-      {label:'Resolução total (h)',data:opsAgs.map(function(a){var arr=ROUTING_DATA.filter(function(r){return r.k===a.key&&r.res>0;});return arr.length?Math.round(arr.reduce(function(s,r){return s+r.res;},0)/arr.length):null;}),backgroundColor:opsAgs.map(function(a){return a.color+'BB';}),borderRadius:4,borderSkipped:false},
-      {label:'Hold em outro time (h)',data:opsAgs.map(function(a){var arr=ROUTING_DATA.filter(function(r){return r.k===a.key&&r.hold>0;});return arr.length?Math.round(arr.reduce(function(s,r){return s+r.hold;},0)/arr.length):null;}),backgroundColor:opsAgs.map(function(){return'#F59E0BAA';}),borderRadius:4,borderSkipped:false}
-    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},scales:{x:{grid:{display:false}},y:{title:{display:true,text:'horas',font:{size:10}}}}}});
-  }
+  mk('c4_rt_res',{type:'line',data:{labels:rtMos.map(gMLBL),datasets:[
+    {label:'Resolução média (h)',data:rtMos.map(function(m){var a=ROUTING_DATA.filter(function(r){return r.mo===m&&r.res>0;});return a.length?Math.round(a.reduce(function(s,r){return s+r.res;},0)/a.length*10)/10:null;}),
+      borderColor:'#2563EB',backgroundColor:'rgba(37,99,235,0.08)',tension:.3,pointRadius:4,fill:true,borderWidth:2},
+    {label:'Hold médio (h)',data:rtMos.map(function(m){var a=ROUTING_DATA.filter(function(r){return r.mo===m&&r.hold>0;});return a.length?Math.round(a.reduce(function(s,r){return s+r.hold;},0)/a.length*10)/10:null;}),
+      borderColor:'#F59E0B',backgroundColor:'rgba(245,158,11,0.06)',tension:.3,pointRadius:4,fill:true,borderWidth:2}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},scales:{x:{grid:{display:false}},y:{title:{display:true,text:'horas',font:{size:10}}}}}})
 }
 
 /* ── Init ── */
