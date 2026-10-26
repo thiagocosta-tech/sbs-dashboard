@@ -1612,6 +1612,13 @@ function bAgBar2(){
   if(role==='agent'){bar.innerHTML='';return;}
   /* Só lista agentes que batem com o filtro ativo de Região/Time */
   var vis=AGENTS.filter(function(ag){return ag.key!=='rayssa'&&agentInFilter(ag.key);});
+  /* Ordem: ativos primeiro (subárea OPS > Billing > Collection, depois alfabética); desligados no final na mesma lógica */
+  var _trOrd={OPS:0,BILLING:1,COLLECTION:2};
+  vis.sort(function(a,b){
+    var ea=a.to?1:0,eb=b.to?1:0;if(ea!==eb)return ea-eb;
+    var ta=_trOrd[a.tribe]!=null?_trOrd[a.tribe]:9,tb=_trOrd[b.tribe]!=null?_trOrd[b.tribe]:9;if(ta!==tb)return ta-tb;
+    return a.name.localeCompare(b.name,'pt');
+  });
   if(vis.length&&!vis.some(function(ag){return ag.key===curAg2;}))curAg2=vis[0].key;
   bar.innerHTML=vis.map(function(ag){
     var exB=ag.to?'<span style="font-size:.52rem;color:#9ca3af;border:1px solid #d1d5db;border-radius:8px;padding:1px 5px;margin-left:3px;font-weight:400">ex</span>':'';
