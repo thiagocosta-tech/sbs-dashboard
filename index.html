@@ -256,36 +256,11 @@ table.jt tr:hover td{background:#f9fafb}
     <div class="card"><h3 id="h_frt8_bil">Billing — SLA 8h%</h3><div class="cwrap2"><canvas id="c1_frt8_bil"></canvas></div></div>
     <div class="card"><h3 id="h_frt8_col">Collection — SLA 8h%</h3><div class="cwrap2"><canvas id="c1_frt8_col"></canvas></div></div>
   </div>
-  <div class="card"><h3>Resolução Média (Tickets c/ CSAT respondido) — Geral SBS (h) <span style="font-size:.62rem;color:#aaa">amostra: apenas tickets com pesquisa CSAT respondida &nbsp;&middot;&nbsp; metas: 8h &middot; 48h</span></h3><div class="cwrap"><canvas id="c1_rt_hours"></canvas></div></div>
-  <div class="grid3" style="margin-bottom:16px">
-    <div class="card"><h3>Resolução (CSAT) — OPS <span style="font-size:.55rem;color:#aaa">(h)</span></h3><div class="cwrap2"><canvas id="c1_rt_ops"></canvas></div></div>
-    <div class="card"><h3>Resolução (CSAT) — Billing <span style="font-size:.55rem;color:#aaa">(h)</span></h3><div class="cwrap2"><canvas id="c1_rt_bil"></canvas></div></div>
-    <div class="card"><h3>Resolução (CSAT) — Collection <span style="font-size:.55rem;color:#aaa">(h)</span></h3><div class="cwrap2"><canvas id="c1_rt_col"></canvas></div></div>
-  </div>
   <div class="grid2">
     <div class="card"><h3>SLA 48h por Time</h3><div class="cwrap2"><canvas id="c1_tribe_sla"></canvas></div></div>
     <div class="card"><h3>Volume por Time <span style="font-size:.62rem;color:#aaa">% do total</span></h3><div class="cwrap2"><canvas id="c1_tribe_vol"></canvas></div></div>
     <div class="card"><h3>SLA 8h por Time</h3><div class="cwrap2"><canvas id="c1_tribe_frt8"></canvas></div></div>
     <div class="card"><h3>Reopen Rate % por Mês</h3><div class="cwrap2"><canvas id="c1_reopen"></canvas></div></div>
-  </div>
-  <div class="sec">Impacto das Transfer&ecirc;ncias no SLA &mdash; Real vs Teto</div>
-  <div class="card"><h3>SLA Real vs SLA Teto &mdash; Geral SBS <span style="font-size:.6rem;color:#aaa">s&oacute;lida = real &nbsp;&middot;&nbsp; tracejada = teto &nbsp;&middot;&nbsp; &aacute;rea = gap estrutural</span></h3><div class="cwrap" style="height:260px"><canvas id="c1_sla_teto"></canvas></div></div>
-  <div class="grid3" style="margin-bottom:16px">
-    <div class="card"><h3>OPS &mdash; Real vs Teto <span style="font-size:.6rem;color:#aaa">tracejada = m&aacute;x. poss&iacute;vel sem herdados + escalados FRT&gt;48h</span></h3><div class="cwrap2"><canvas id="c1_sla_t_ops"></canvas></div></div>
-    <div class="card"><h3>Billing &mdash; Real vs Teto</h3><div class="cwrap2"><canvas id="c1_sla_t_bil"></canvas></div></div>
-    <div class="card"><h3>Collection &mdash; Real vs Teto</h3><div class="cwrap2"><canvas id="c1_sla_t_col"></canvas></div></div>
-  </div>
-  <div class="card"><h3>Tickets Diretos vs Recebidos (Child) &mdash; Geral <span style="font-size:.6rem;color:#aaa">s&oacute;lido = direto &nbsp;&middot;&nbsp; transparente = recebido (child)</span></h3><div class="cwrap" style="height:260px"><canvas id="c1_child_vol"></canvas></div></div>
-  <div class="grid3" style="margin-bottom:16px">
-    <div class="card"><h3>OPS &mdash; Direto vs Child</h3><div class="cwrap2"><canvas id="c1_child_ops"></canvas></div></div>
-    <div class="card"><h3>Billing &mdash; Direto vs Child</h3><div class="cwrap2"><canvas id="c1_child_bil"></canvas></div></div>
-    <div class="card"><h3>Collection &mdash; Direto vs Child</h3><div class="cwrap2"><canvas id="c1_child_col"></canvas></div></div>
-  </div>
-  <div class="card"><h3>Faixa de Tempo dos Tickets Recebidos &mdash; Geral <span style="font-size:.6rem;color:#aaa">tempo no grupo origem antes de ser transferido</span></h3><div class="cwrap" style="height:220px"><canvas id="c1_trans_faixa"></canvas></div></div>
-  <div class="grid3" style="margin-bottom:16px">
-    <div class="card"><h3>Faixa &mdash; OPS</h3><div class="cwrap2"><canvas id="c1_trans_ops"></canvas></div></div>
-    <div class="card"><h3>Faixa &mdash; Billing</h3><div class="cwrap2"><canvas id="c1_trans_bil"></canvas></div></div>
-    <div class="card"><h3>Faixa &mdash; Collection</h3><div class="cwrap2"><canvas id="c1_trans_col"></canvas></div></div>
   </div>
   <div class="sec">Sazonalidade &mdash; Concentra&ccedil;&atilde;o de Tickets</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
@@ -331,13 +306,8 @@ table.jt tr:hover td{background:#f9fafb}
   </div>
   <div class="grid2">
     <div class="card"><h3>Score CSAT médio por Mês (1–5)</h3><div class="cwrap"><canvas id="c2_csat_score"></canvas></div></div>
-    <div class="card"><h3>Tempo Médio de Resolução (CSAT) (h) <span style="font-size:.6rem;color:#aaa">amostra: tickets com pesquisa CSAT respondida</span></h3><div class="cwrap"><canvas id="c2_rt_zd"></canvas></div></div>
   </div>
   <div class="card"><h3>Participação de Volume — % do SBS total e da Subárea</h3><div class="cwrap-main"><canvas id="c2_vol_share"></canvas></div></div>
-  <div class="grid2">
-    <div class="card"><h3>SLA Real vs Teto &mdash; m&aacute;x. poss&iacute;vel sem casos herdados <span style="font-size:.6rem;color:#aaa">s&oacute;lida = real &nbsp;&middot;&nbsp; tracejada = teto (proporcional ao grupo)</span></h3><div class="cwrap"><canvas id="c2_sla_teto"></canvas></div></div>
-    <div class="card"><h3>Direto vs Recebido (Child) <span style="font-size:.6rem;color:#aaa">estimado pela participa&ccedil;&atilde;o no grupo</span></h3><div class="cwrap"><canvas id="c2_child_vol"></canvas></div></div>
-  </div>
   <div id="p2_routing_wrap">
     <div class="sec">Escalações FRT &gt;48h — Este Agente</div>
     <div class="krow" id="k2_routing"></div>
@@ -422,25 +392,6 @@ table.jt tr:hover td{background:#f9fafb}
   <div class="sec">Escala&ccedil;&otilde;es OPS &mdash; Hist&oacute;rico FRT &gt;48h</div>
   <div class="card"><h3>Tickets Violadores por Per&iacute;odo e Destino</h3><div class="cwrap"><canvas id="c4_rt_trend"></canvas></div></div>
   <div class="card"><h3>OPS &mdash; Resolu&ccedil;&atilde;o m&eacute;dia vs Hold por Per&iacute;odo (h)</h3><div class="cwrap"><canvas id="c4_rt_res"></canvas></div></div>
-  <div class="sec">Impacto das Transfer&ecirc;ncias e Escala&ccedil;&otilde;es no SLA</div>
-  <div class="card"><h3>SLA Real vs SLA Teto &mdash; Geral SBS <span style="font-size:.6rem;color:#aaa">s&oacute;lida = real &nbsp;&middot;&nbsp; tracejada = teto &nbsp;&middot;&nbsp; &aacute;rea = gap estrutural</span></h3><div class="cwrap" style="height:260px"><canvas id="c4_sla_teto"></canvas></div></div>
-  <div class="grid3" style="margin-bottom:16px">
-    <div class="card"><h3>SLA Teto &mdash; OPS <span style="font-size:.55rem;color:#aaa">herdados+escalados</span></h3><div class="cwrap2"><canvas id="c4_sla_t_ops"></canvas></div></div>
-    <div class="card"><h3>SLA Teto &mdash; Billing</h3><div class="cwrap2"><canvas id="c4_sla_t_bil"></canvas></div></div>
-    <div class="card"><h3>SLA Teto &mdash; Collection</h3><div class="cwrap2"><canvas id="c4_sla_t_col"></canvas></div></div>
-  </div>
-  <div class="card"><h3>Tickets Diretos vs Recebidos (Child) &mdash; Geral</h3><div class="cwrap" style="height:260px"><canvas id="c4_child_vol"></canvas></div></div>
-  <div class="grid3" style="margin-bottom:16px">
-    <div class="card"><h3>Child &mdash; OPS</h3><div class="cwrap2"><canvas id="c4_child_ops"></canvas></div></div>
-    <div class="card"><h3>Child &mdash; Billing</h3><div class="cwrap2"><canvas id="c4_child_bil"></canvas></div></div>
-    <div class="card"><h3>Child &mdash; Collection</h3><div class="cwrap2"><canvas id="c4_child_col"></canvas></div></div>
-  </div>
-  <div class="card"><h3>Faixa de Tempo dos Tickets Recebidos &mdash; Geral</h3><div class="cwrap" style="height:220px"><canvas id="c4_trans_faixa"></canvas></div></div>
-  <div class="grid3" style="margin-bottom:16px">
-    <div class="card"><h3>Faixa &mdash; OPS</h3><div class="cwrap2"><canvas id="c4_trans_ops"></canvas></div></div>
-    <div class="card"><h3>Faixa &mdash; Billing</h3><div class="cwrap2"><canvas id="c4_trans_bil"></canvas></div></div>
-    <div class="card"><h3>Faixa &mdash; Collection</h3><div class="cwrap2"><canvas id="c4_trans_col"></canvas></div></div>
-  </div>
   <div class="sec">Sazonalidade &mdash; Concentra&ccedil;&atilde;o de Tickets</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
     <div class="card"><h3>Tickets por Semana do M&ecirc;s (%)</h3><div class="cwrap"><canvas id="c4_wk_sea"></canvas></div></div>
@@ -463,12 +414,7 @@ table.jt tr:hover td{background:#f9fafb}
   <div class="card"><h3>Volume + SLA 48h % — OPS</h3><div class="cwrap-main"><canvas id="c5_vol"></canvas></div></div>
   <div class="card"><h3>CSAT % + Volume — OPS <span style="font-size:.62rem;color:#aaa">meta &gt;88%</span></h3><div class="cwrap-main"><canvas id="c5_csat"></canvas></div></div>
   <div class="card"><h3>SLA 8h % — Tend&ecirc;ncia — OPS <span style="font-size:.62rem;color:#aaa">meta &gt;50%</span></h3><div class="cwrap"><canvas id="c5_frt8"></canvas></div></div>
-  <div class="card"><h3>Resolu&ccedil;&atilde;o M&eacute;dia (CSAT) — OPS (h) <span style="font-size:.62rem;color:#aaa">amostra: tickets com CSAT respondido &nbsp;&middot;&nbsp; metas: 8h &middot; 48h</span></h3><div class="cwrap"><canvas id="c5_rt_hours"></canvas></div></div>
   <div class="card"><h3>Reopen Rate % por M&ecirc;s — OPS</h3><div class="cwrap"><canvas id="c5_reopen"></canvas></div></div>
-  <div class="sec">Impacto das Transfer&ecirc;ncias e Escala&ccedil;&otilde;es no SLA &mdash; Real vs Teto</div>
-  <div class="card"><h3>SLA Real vs SLA Teto — OPS <span style="font-size:.6rem;color:#aaa">s&oacute;lida = real &nbsp;&middot;&nbsp; tracejada = teto (sem herdados + sem escalados FRT&gt;48h) &nbsp;&middot;&nbsp; &aacute;rea = gap estrutural</span></h3><div class="cwrap" style="height:260px"><canvas id="c5_sla_teto"></canvas></div></div>
-  <div class="card"><h3>Tickets Diretos vs Recebidos (Child) — OPS <span style="font-size:.6rem;color:#aaa">s&oacute;lido = direto &nbsp;&middot;&nbsp; transparente = recebido (child)</span></h3><div class="cwrap" style="height:260px"><canvas id="c5_child_vol"></canvas></div></div>
-  <div class="card"><h3>Faixa de Tempo dos Tickets Recebidos — OPS <span style="font-size:.6rem;color:#aaa">tempo no grupo origem antes de ser transferido</span></h3><div class="cwrap" style="height:220px"><canvas id="c5_trans_faixa"></canvas></div></div>
   <div class="sec">Sazonalidade &mdash; Concentra&ccedil;&atilde;o de Tickets</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
     <div class="card"><h3>Tickets por Semana do M&ecirc;s (%)</h3><div class="cwrap"><canvas id="c5_wk_sea"></canvas></div></div>
@@ -498,12 +444,7 @@ table.jt tr:hover td{background:#f9fafb}
   <div class="card"><h3>Volume + SLA 48h % — Billing</h3><div class="cwrap-main"><canvas id="c6_vol"></canvas></div></div>
   <div class="card"><h3>CSAT % + Volume — Billing <span style="font-size:.62rem;color:#aaa">meta &gt;88%</span></h3><div class="cwrap-main"><canvas id="c6_csat"></canvas></div></div>
   <div class="card"><h3>SLA 8h % — Tend&ecirc;ncia — Billing <span style="font-size:.62rem;color:#aaa">meta &gt;50%</span></h3><div class="cwrap"><canvas id="c6_frt8"></canvas></div></div>
-  <div class="card"><h3>Resolu&ccedil;&atilde;o M&eacute;dia (CSAT) — Billing (h) <span style="font-size:.62rem;color:#aaa">amostra: tickets com CSAT respondido &nbsp;&middot;&nbsp; metas: 8h &middot; 48h</span></h3><div class="cwrap"><canvas id="c6_rt_hours"></canvas></div></div>
   <div class="card"><h3>Reopen Rate % por M&ecirc;s — Billing</h3><div class="cwrap"><canvas id="c6_reopen"></canvas></div></div>
-  <div class="sec">Impacto das Transfer&ecirc;ncias no SLA &mdash; Real vs Teto</div>
-  <div class="card"><h3>SLA Real vs SLA Teto — Billing <span style="font-size:.6rem;color:#aaa">s&oacute;lida = real &nbsp;&middot;&nbsp; tracejada = teto &nbsp;&middot;&nbsp; &aacute;rea = gap estrutural</span></h3><div class="cwrap" style="height:260px"><canvas id="c6_sla_teto"></canvas></div></div>
-  <div class="card"><h3>Tickets Diretos vs Recebidos (Child) — Billing <span style="font-size:.6rem;color:#aaa">s&oacute;lido = direto &nbsp;&middot;&nbsp; transparente = recebido (child)</span></h3><div class="cwrap" style="height:260px"><canvas id="c6_child_vol"></canvas></div></div>
-  <div class="card"><h3>Faixa de Tempo dos Tickets Recebidos — Billing <span style="font-size:.6rem;color:#aaa">tempo no grupo origem antes de ser transferido</span></h3><div class="cwrap" style="height:220px"><canvas id="c6_trans_faixa"></canvas></div></div>
   <div class="sec">Sazonalidade &mdash; Concentra&ccedil;&atilde;o de Tickets</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
     <div class="card"><h3>Tickets por Semana do M&ecirc;s (%)</h3><div class="cwrap"><canvas id="c6_wk_sea"></canvas></div></div>
@@ -529,12 +470,7 @@ table.jt tr:hover td{background:#f9fafb}
   <div class="card"><h3>Volume + SLA 48h % — Collection</h3><div class="cwrap-main"><canvas id="c7_vol"></canvas></div></div>
   <div class="card"><h3>CSAT % + Volume — Collection <span style="font-size:.62rem;color:#aaa">meta &gt;88%</span></h3><div class="cwrap-main"><canvas id="c7_csat"></canvas></div></div>
   <div class="card"><h3>SLA 8h % — Tend&ecirc;ncia — Collection <span style="font-size:.62rem;color:#aaa">meta &gt;50%</span></h3><div class="cwrap"><canvas id="c7_frt8"></canvas></div></div>
-  <div class="card"><h3>Resolu&ccedil;&atilde;o M&eacute;dia (CSAT) — Collection (h) <span style="font-size:.62rem;color:#aaa">amostra: tickets com CSAT respondido &nbsp;&middot;&nbsp; metas: 8h &middot; 48h</span></h3><div class="cwrap"><canvas id="c7_rt_hours"></canvas></div></div>
   <div class="card"><h3>Reopen Rate % por M&ecirc;s — Collection</h3><div class="cwrap"><canvas id="c7_reopen"></canvas></div></div>
-  <div class="sec">Impacto das Transfer&ecirc;ncias no SLA &mdash; Real vs Teto</div>
-  <div class="card"><h3>SLA Real vs SLA Teto — Collection <span style="font-size:.6rem;color:#aaa">s&oacute;lida = real &nbsp;&middot;&nbsp; tracejada = teto &nbsp;&middot;&nbsp; &aacute;rea = gap estrutural</span></h3><div class="cwrap" style="height:260px"><canvas id="c7_sla_teto"></canvas></div></div>
-  <div class="card"><h3>Tickets Diretos vs Recebidos (Child) — Collection <span style="font-size:.6rem;color:#aaa">s&oacute;lido = direto &nbsp;&middot;&nbsp; transparente = recebido (child)</span></h3><div class="cwrap" style="height:260px"><canvas id="c7_child_vol"></canvas></div></div>
-  <div class="card"><h3>Faixa de Tempo dos Tickets Recebidos — Collection <span style="font-size:.6rem;color:#aaa">tempo no grupo origem antes de ser transferido</span></h3><div class="cwrap" style="height:220px"><canvas id="c7_trans_faixa"></canvas></div></div>
   <div class="sec">Sazonalidade &mdash; Concentra&ccedil;&atilde;o de Tickets</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
     <div class="card"><h3>Tickets por Semana do M&ecirc;s (%)</h3><div class="cwrap"><canvas id="c7_wk_sea"></canvas></div></div>
@@ -1244,105 +1180,9 @@ function _slaTetoCalcPd(pds,tbFilter,useRg){
       return volT>0?Math.min(100,Math.round(f48/volT*1000)/10):null;
     })
   };
-}
-function rSlaTeto(canId,tbFilter){
-  var pds=getPeriods();
-  var allDefs=[
-    {tb:null,       label:'Geral',   col:'#475569'},
-    {tb:'OPS',      label:'OPS',     col:TRIBE_COLORS.OPS},
-    {tb:'BILLING',  label:'Billing', col:TRIBE_COLORS.BILLING},
-    {tb:'COLLECTION',label:'Coll',   col:TRIBE_COLORS.COLLECTION}
-  ];
-  var useRg=!!tbFilter;
-  var defsToUse=tbFilter?allDefs.filter(function(d){return d.tb===tbFilter;}):allDefs.filter(function(d){return d.tb===null;});
-  var datasets=[];
-  defsToUse.forEach(function(d){
-    var calc=_slaTetoCalcPd(pds,d.tb,useRg);
-    var hasSome=calc.slaR.some(function(v){return v!==null;});
-    if(!hasSome)return;
-    datasets.push({label:'Teto — máx. possível',_noLbl:true,data:calc.slaT,
-      borderColor:d.col,borderDash:[10,5],tension:.3,pointRadius:3,pointBackgroundColor:'white',
-      pointBorderColor:d.col,pointBorderWidth:2,fill:false,borderWidth:2.5});
-    datasets.push({label:'Real',data:calc.slaR,
-      borderColor:d.col,backgroundColor:d.col+'20',tension:.3,pointRadius:3,fill:'-1',borderWidth:2.5});
-  });
-  datasets.push({type:'line',label:'Meta 95%',_noLbl:true,
-    data:pds.map(function(){return 95;}),
-    borderColor:'rgba(239,68,68,0.4)',borderDash:[3,4],borderWidth:1.5,pointRadius:0,fill:false});
-  mk(canId,{type:'line',data:{labels:pds.map(function(p){return p.label;}),datasets:datasets},
-    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
-      plugins:{legend:LEGEND_OPTS,tooltip:{callbacks:{label:function(ctx){
-        if(ctx.dataset._noLbl)return'Teto (máx. possível): '+(ctx.parsed.y!==null?ctx.parsed.y+'%':'—');
-        var tetoDs=ctx.chart.data.datasets[ctx.datasetIndex-1];
-        var rV=ctx.parsed.y;
-        var tV=tetoDs&&tetoDs._noLbl?tetoDs.data[ctx.dataIndex]:null;
-        var gap=(rV!==null&&tV!==null&&tV>rV)?(' · teto: '+tV+'% → +'+(tV-rV).toFixed(1)+'% estrutural'):'';
-        return'Real: '+(rV!==null?rV+'%':'—')+gap;
-      }}}},
-      animation:{duration:300},
-      scales:{x:{grid:{display:false}},y:{min:0,max:100,ticks:{callback:function(v){return v+'%';},font:{size:9}}}}}});
-}
-
-/* ── Child vs Parent: volume de tickets diretos vs recebidos ── */
-function rChildVol(canId,tbFilter,useTeamFilter){
-  var pds=getPeriods();
-  function grOk(gr){
-    var tb=gr.split('|')[0];
-    if(tbFilter&&tb!==tbFilter)return false;
-    if(tbFilter)return rgMatchGr(gr);
-    if(useTeamFilter)return grMatch(gr);
-    return true;
-  }
-  function sumFld(fld){
-    return pds.map(function(p){
-      var tot=p.months.reduce(function(s,m){
-        return s+VOL_DATA.filter(function(v){return v.mo===m&&grOk(v.gr);}).reduce(function(s2,v){return s2+v[fld];},0);
-      },0);
-      return tot||null;
-    });
-  }
-  var col=tbFilter?TRIBE_COLORS[tbFilter]:'#475569';
-  var lbl=tbFilter||'SBS';
-  mk(canId,{type:'line',data:{labels:pds.map(function(p){return p.label;}),datasets:[
-    {label:lbl+' — Direto',data:sumFld('par'),
-      borderColor:col,backgroundColor:col+'18',tension:.3,pointRadius:3,
-      pointBackgroundColor:col,borderWidth:2.5,fill:false},
-    {label:lbl+' — Recebido (Child)',data:sumFld('chi'),
-      borderColor:col,backgroundColor:'transparent',tension:.3,pointRadius:3,
-      pointBackgroundColor:'white',pointBorderColor:col,pointBorderWidth:2,
-      borderDash:[9,4],borderWidth:2,fill:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:LEGEND_OPTS,tooltip:{mode:'index',intersect:false}},
-    animation:{duration:300},
-    scales:{x:{grid:{display:false}},y:{min:0,title:{display:true,text:'tickets',font:{size:9}}}}}});
-}
-
-/* ── Faixa de tempo dos tickets recebidos ── */
-function rTransFaixa(canId,tbFilter,useTeamFilter){
-  var pds=getPeriods();
-  function sumFldP(p,fld){
-    var rows=TRANS_DATA.filter(function(d){
-      var tb=d.gr.split('|')[0];
-      if(tbFilter&&tb!==tbFilter)return false;
-      if(tbFilter){return rgMatchGr(d.gr)&&moIn(p,d.mo);}
-      return (useTeamFilter?grMatch(d.gr):true)&&moIn(p,d.mo);
-    });
-    var s=rows.reduce(function(a,d){return a+d[fld];},0);
-    return s>0?s:null;
-  }
-  mk(canId,{type:'bar',data:{labels:pds.map(function(p){return p.label;}),datasets:[
-    {label:'🔴 >48h (chegou j\xE1 estourado)',
-     data:pds.map(function(p){return sumFldP(p,'o48');}),
-     backgroundColor:'rgba(220,38,38,0.72)',stack:'s',borderRadius:2,borderSkipped:false},
-    {label:'🟡 8h–48h',
-     data:pds.map(function(p){return sumFldP(p,'in8');}),
-     backgroundColor:'rgba(245,158,11,0.72)',stack:'s',borderRadius:2,borderSkipped:false},
-    {label:'🟢 <8h',
-     data:pds.map(function(p){return sumFldP(p,'u8');}),
-     backgroundColor:'rgba(34,197,94,0.72)',stack:'s',borderRadius:2,borderSkipped:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},
-    scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,title:{display:true,text:'tickets recebidos',font:{size:9}}}}}});
-}
+}
+
+
 
 /* ── CSAT % — geral ou por tribe ── */
 function rCsatTribeChart(canId,pds,tbFilter){
@@ -1372,25 +1212,7 @@ function rCsatScoreChart(canId,pds,tbFilter){
      borderColor:'rgba(34,197,94,0.5)',borderDash:[4,4],borderWidth:1.5,pointRadius:0,fill:false}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},
     scales:{x:{grid:{display:false}},y:{min:1,max:5,title:{display:true,text:'score',font:{size:9}},ticks:{stepSize:1}}}}});
-}
-/* ── Resolução média (h) via COMMENTS.rt — geral ou por tribe ── */
-function rResAvg(canId,tbFilter){
-  var pds=getPeriods();
-  var col=tbFilter?TRIBE_COLORS[tbFilter]:'#0066CC';
-  var lbl=(tbFilter||'Geral')+' — Resolução (CSAT) (h)';
-  mk(canId,{type:'line',data:{labels:pds.map(function(p){return p.label;}),datasets:[
-    {label:lbl,data:pds.map(function(p){
-      var arr=COMMENTS.filter(function(c){
-        var ag=AGENTS.find(function(a){return a.key===c.k;});
-        return ag&&moIn(p,c.mo)&&c.rt>0&&(tbFilter?(ag.tribe===tbFilter&&rgMatch({tb:ag.tribe,rg:ag.region})):agentInFilter(c.k));
-      });
-      return arr.length>=3?Math.round(arr.reduce(function(s,c){return s+c.rt;},0)/arr.length*10)/10:null;
-    }),borderColor:col,backgroundColor:col+'18',tension:.3,pointRadius:3,fill:true,borderWidth:2},
-    {type:'line',label:'Meta 8h',_noLbl:true,data:pds.map(function(){return 8;}),borderColor:'rgba(34,197,94,0.4)',borderDash:[4,3],borderWidth:1.5,pointRadius:0,fill:false},
-    {type:'line',label:'Meta 48h',_noLbl:true,data:pds.map(function(){return 48;}),borderColor:'rgba(239,68,68,0.4)',borderDash:[4,3],borderWidth:1.5,pointRadius:0,fill:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},
-    scales:{x:{grid:{display:false}},y:{title:{display:true,text:'horas',font:{size:9}}}}}});
-}
+}
 /* ── Sazonalidade ── */
 function rSbsSeason(wkId,qmId,agKey){
   var mos=gMos();
@@ -1593,25 +1415,7 @@ function rT1(){
       metaLineYr(50,periods,'#E74C3C')
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},animation:{duration:300},scales:cmboScales(false)}});
   });
-
-  /* Zendesk — RT médio em horas (combo: volume + linha horas) — igual CRG */
-  mk('c1_rt_hours',{type:'bar',data:{labels:pLbls,datasets:[
-    barDs(T('c_volume'),periods.map(function(p){var s=agg(fRows(function(x){return moIn(p,x.mo);}));return s.vol||null;}),'#3498DB'),
-    {type:'line',label:'RT Médio (h)',yAxisID:'yh',_noLbl:false,
-      data:periods.map(function(p){
-        var cs=COMMENTS.filter(function(c){return moIn(p,c.mo)&&c.rt>0&&agentInFilter(c.k);});
-        return cs.length>=10?Math.round(cs.reduce(function(a,c){return a+c.rt;},0)/cs.length*10)/10:null;
-      }),
-      borderColor:'#C1275D',backgroundColor:'transparent',tension:.3,pointRadius:4,
-      pointBackgroundColor:'#C1275D',borderWidth:2,fill:false,order:0},
-    {type:'line',label:T('c_meta')+' 8h',_noLbl:true,yAxisID:'yh',
-      data:periods.map(function(){return 8;}),borderColor:'rgba(99,102,241,0.7)',borderDash:[5,4],borderWidth:1.5,pointRadius:0,fill:false},
-    {type:'line',label:T('c_meta')+' 48h',_noLbl:true,yAxisID:'yh',
-      data:periods.map(function(){return 48;}),borderColor:'#E74C3C',borderDash:[5,4],borderWidth:1.5,pointRadius:0,fill:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},
-    scales:{x:{grid:{display:false}},y:{position:'left'},
-      yh:{type:'linear',position:'right',min:0,grid:{display:false},
-        ticks:{callback:function(v){return v+'h';},font:{size:9}}}}}});
+
 
   /* SLA by tribe (bar) — bars colored by threshold */
   var _tsla48=tribes.map(function(tb){var s=agg(fRows(function(x){return x.tb===tb;}));return pct(s.f48,s.v48);});
@@ -1788,14 +1592,14 @@ function rT1(){
   }
   rRouting1();
   rCreatedOut();
-  rResAvg('c1_rt_hours',null);
-  rResAvg('c1_rt_ops','OPS');rResAvg('c1_rt_bil','BILLING');rResAvg('c1_rt_col','COLLECTION');
-  rSlaTeto('c1_sla_teto',null);
-  rSlaTeto('c1_sla_t_ops','OPS');rSlaTeto('c1_sla_t_bil','BILLING');rSlaTeto('c1_sla_t_col','COLLECTION');
-  rChildVol('c1_child_vol',null,true);
-  rChildVol('c1_child_ops','OPS',false);rChildVol('c1_child_bil','BILLING',false);rChildVol('c1_child_col','COLLECTION',false);
-  rTransFaixa('c1_trans_faixa',null,true);
-  rTransFaixa('c1_trans_ops','OPS',false);rTransFaixa('c1_trans_bil','BILLING',false);rTransFaixa('c1_trans_col','COLLECTION',false);
+
+
+
+
+
+
+
+
   rSbsSeason('c1_wk_sea','c1_qm_sea',null);
 }
 
@@ -1817,88 +1621,8 @@ function bAgBar2(){
   }).join('');
 }
 function setAg2(k){curAg2=k;bAgBar2();rT2();}
-
-/* ── SLA Real vs Teto por agente (prorate o48 pelo share no grupo) ── */
-function rSlaTetoAg(canId,agRow,pds,ag){
-  var col=ag.color||'#C1275D';
-  function getO48(m){
-    var agM=agRow.filter(function(r){return r.mo===m;});
-    var seen={};agM.forEach(function(r){seen[r.tb+'|'+r.rg]=true;});
-    return Object.keys(seen).reduce(function(tot,gr){
-      var td=TRANS_DATA.find(function(x){return x.gr===gr&&x.mo===m;});
-      if(!td||!td.o48)return tot;
-      var gp=gr.split('|');
-      var grTot=ROWS.filter(function(r){return r.mo===m&&r.tb===gp[0]&&r.rg===gp[1];}).reduce(function(s,r){return s+r.v;},0);
-      var agVol=agM.filter(function(r){return r.tb===gp[0]&&r.rg===gp[1];}).reduce(function(s,r){return s+r.v;},0);
-      return tot+(grTot>0?td.o48*(agVol/grTot):0);
-    },0);
-  }
-  var slaR=pds.map(function(p){var s=agg(agRow.filter(function(r){return moIn(p,r.mo);}));return pct(s.f48,s.v48);});
-  var slaT=pds.map(function(p){
-    var s=agg(agRow.filter(function(r){return moIn(p,r.mo);}));
-    if(!s.vol)return null;
-    var o48=p.months.reduce(function(sum,m){return sum+getO48(m);},0);
-    var volT=Math.max(s.vol-o48,0);
-    return volT>0?Math.min(100,Math.round(s.f48/volT*1000)/10):null;
-  });
-  mk(canId,{type:'line',data:{labels:pds.map(function(p){return p.label;}),datasets:[
-    {label:'Teto — máx. possível',_noLbl:true,data:slaT,
-      borderColor:col,borderDash:[10,5],tension:.3,pointRadius:3,
-      pointBackgroundColor:'white',pointBorderColor:col,pointBorderWidth:2,fill:false,borderWidth:2.5},
-    {label:'Real',data:slaR,
-      borderColor:col,backgroundColor:col+'20',tension:.3,pointRadius:3,fill:'-1',borderWidth:2.5},
-    {type:'line',label:'Meta 95%',_noLbl:true,
-      data:pds.map(function(){return 95;}),
-      borderColor:'rgba(239,68,68,0.4)',borderDash:[3,4],borderWidth:1.5,pointRadius:0,fill:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
-    plugins:{legend:LEGEND_OPTS,tooltip:{callbacks:{label:function(ctx){
-      if(ctx.dataset._noLbl&&ctx.datasetIndex===0)return'Teto (máx. possível): '+(ctx.parsed.y!==null?ctx.parsed.y+'%':'—');
-      if(ctx.dataset._noLbl)return null;
-      var tV=ctx.chart.data.datasets[0].data[ctx.dataIndex];
-      var rV=ctx.parsed.y;
-      var gap=(rV!==null&&tV!==null&&tV>rV)?(' → teto: '+tV+'% (+'+(tV-rV).toFixed(1)+'%)'):'';
-      return'Real: '+(rV!==null?rV+'%':'—')+gap;
-    }}}},
-    animation:{duration:300},
-    scales:{x:{grid:{display:false}},y:{min:0,max:100,ticks:{callback:function(v){return v+'%';},font:{size:9}}}}}});
-}
-
-/* ── Direto vs Child por agente (prorate VOL_DATA pelo share no grupo) ── */
-function rChildVolAg(canId,agRow,pds,ag){
-  var col=ag.color||'#C1275D';
-  function prorateVol(fld,m){
-    var agM=agRow.filter(function(r){return r.mo===m;});
-    var seen={};agM.forEach(function(r){seen[r.tb+'|'+r.rg]=true;});
-    return Object.keys(seen).reduce(function(tot,gr){
-      var vd=VOL_DATA.find(function(v){return v.gr===gr&&v.mo===m;});
-      if(!vd)return tot;
-      var gp=gr.split('|');
-      var grTot=ROWS.filter(function(r){return r.mo===m&&r.tb===gp[0]&&r.rg===gp[1];}).reduce(function(s,r){return s+r.v;},0);
-      var agVol=agM.filter(function(r){return r.tb===gp[0]&&r.rg===gp[1];}).reduce(function(s,r){return s+r.v;},0);
-      return tot+(grTot>0?vd[fld]*(agVol/grTot):0);
-    },0);
-  }
-  var dirData=pds.map(function(p){
-    var v=p.months.reduce(function(s,m){return s+prorateVol('par',m);},0);
-    return v>0.5?Math.round(v):null;
-  });
-  var chiData=pds.map(function(p){
-    var v=p.months.reduce(function(s,m){return s+prorateVol('chi',m);},0);
-    return v>0.5?Math.round(v):null;
-  });
-  mk(canId,{type:'line',data:{labels:pds.map(function(p){return p.label;}),datasets:[
-    {label:'Direto',data:dirData,
-      borderColor:col,backgroundColor:col+'18',tension:.3,pointRadius:3,
-      pointBackgroundColor:col,borderWidth:2.5,fill:false},
-    {label:'Recebido (Child)',data:chiData,
-      borderColor:col,backgroundColor:'transparent',tension:.3,pointRadius:3,
-      pointBackgroundColor:'white',pointBorderColor:col,pointBorderWidth:2,
-      borderDash:[9,4],borderWidth:2,fill:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:LEGEND_OPTS,tooltip:{mode:'index',intersect:false}},
-    animation:{duration:300},
-    scales:{x:{grid:{display:false}},y:{min:0,title:{display:true,text:'tickets (estimado)',font:{size:9}}}}}});
-}
+
+
 
 /* ── Sazonalidade travada em uma sub&aacute;rea (ignora pills de Time) ── */
 function rSbsSeasonTribe(wkId,qmId,tb){
@@ -2069,10 +1793,10 @@ function rTSub(tb,px,kx){
     scales:{x:{grid:{display:false}},y:{max:100,ticks:{callback:function(v){return v+'%';},stepSize:5}}}}});
 
   /* Reaproveitando helpers que já aceitam tbFilter (requerem _selTribes vazio — garantido em sw()); região continua aplicada via rgMatch */
-  rResAvg(px+'_rt_hours',tb);
-  rSlaTeto(px+'_sla_teto',tb);
-  rChildVol(px+'_child_vol',tb,false);
-  rTransFaixa(px+'_trans_faixa',tb,false);
+
+
+
+
 
   /* Sazonalidade */
   rSbsSeasonTribe(px+'_wk_sea',px+'_qm_sea',tb);
@@ -2237,31 +1961,7 @@ function rT2(){
     scales:{x:{grid:{display:false}},
       y:{min:1,max:5,title:{display:true,text:'score',font:{size:9}},ticks:{stepSize:1}},
       yv:{type:'linear',position:'right',grid:{display:false},ticks:{font:{size:9},color:'#94a3b8'}}}}});
-
-  /* Tempo médio de resolução Zendesk por período (horas, de COMMENTS) */
-  mk('c2_rt_zd',{type:'bar',data:{labels:pLbls,datasets:[
-    {type:'bar',label:'N respostas c/ tempo',yAxisID:'yv',
-      data:periods.map(function(p){return COMMENTS.filter(function(c){return c.k===curAg2&&moIn(p,c.mo)&&c.rt>0;}).length||null;}),
-      backgroundColor:'#94a3b8AA',borderRadius:4,order:2},
-    {type:'line',label:'Tempo médio (h)',yAxisID:'y',
-      data:periods.map(function(p){
-        var arr=COMMENTS.filter(function(c){return c.k===curAg2&&moIn(p,c.mo)&&c.rt>0;});
-        return arr.length>=3?Math.round(arr.reduce(function(s,c){return s+c.rt;},0)/arr.length*10)/10:null;
-      }),
-      borderColor:col,backgroundColor:'transparent',tension:.3,pointRadius:4,
-      pointBackgroundColor:col,borderWidth:2,fill:false,order:0},
-    {type:'line',label:'Meta 48h',yAxisID:'y',
-      data:periods.map(function(){return 48;}),
-      borderColor:'#ef4444',borderDash:[5,4],borderWidth:1.5,pointRadius:0,
-      backgroundColor:'transparent',fill:false,order:1},
-    {type:'line',label:'Meta 8h (FRT)',yAxisID:'y',
-      data:periods.map(function(){return 8;}),
-      borderColor:'#22c55e',borderDash:[5,4],borderWidth:1.5,pointRadius:0,
-      backgroundColor:'transparent',fill:false,order:1}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},
-    scales:{x:{grid:{display:false}},
-      y:{min:0,title:{display:true,text:'horas',font:{size:9}}},
-      yv:{type:'linear',position:'right',grid:{display:false},ticks:{font:{size:9},color:'#94a3b8'}}}}});
+
 
   /* Participação de volume — % do SBS total e % da subárea */
   var curTribe=ag.tribe;
@@ -2397,8 +2097,8 @@ function rT2(){
       '</div>';
     }).join('')+(totalDisp>10?'<div style="font-size:.73rem;color:#aaa;margin:8px 0">Mostrando 10 de '+totalDisp+' comentários com texto em 2026 — baixe o CSV para ver todos</div>':'');
   } else if(cmWrap){cmWrap.style.display='none';}
-  rSlaTetoAg('c2_sla_teto',agR,periods,ag);
-  rChildVolAg('c2_child_vol',agR,periods,ag);
+
+
   rRouting2(curAg2);
   rSbsSeason('c2_wk_sea','c2_qm_sea',curAg2);
 }
@@ -3144,12 +2844,12 @@ function rRouting4(){
     {label:'Hold médio (h)',data:rtMos.map(function(m){var a=rtF.filter(function(r){return r.mo===m&&r.hold>0;});return a.length?Math.round(a.reduce(function(s,r){return s+r.hold;},0)/a.length*10)/10:null;}),
       borderColor:'#F59E0B',backgroundColor:'rgba(245,158,11,0.06)',tension:.3,pointRadius:4,fill:true,borderWidth:2}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},scales:{x:{grid:{display:false}},y:{title:{display:true,text:'horas',font:{size:10}}}}}});
-  rSlaTeto('c4_sla_teto',null);
-  rSlaTeto('c4_sla_t_ops','OPS');rSlaTeto('c4_sla_t_bil','BILLING');rSlaTeto('c4_sla_t_col','COLLECTION');
-  rChildVol('c4_child_vol',null,false);
-  rChildVol('c4_child_ops','OPS',false);rChildVol('c4_child_bil','BILLING',false);rChildVol('c4_child_col','COLLECTION',false);
-  rTransFaixa('c4_trans_faixa',null,false);
-  rTransFaixa('c4_trans_ops','OPS',false);rTransFaixa('c4_trans_bil','BILLING',false);rTransFaixa('c4_trans_col','COLLECTION',false);
+
+
+
+
+
+
   rSbsSeason('c4_wk_sea','c4_qm_sea',null);
 }
 
