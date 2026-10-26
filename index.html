@@ -583,7 +583,7 @@ var I18N={
     sec_sla_trend:'Tendência SLA 48h por Time',
     kpi_vol:'Total Tickets',kpi_sla:'SLA 48h',kpi_csat:'CSAT',kpi_frt:'SLA 8h',
     kpi_reopen:'Reopen Rate',kpi_jira_tot:'Jira Tasks',
-    kpi_jira_done:'Jira Concluídas',kpi_jira_esc:'Escaladas %',
+    kpi_jira_done:'Jira Concluídas',kpi_jira_esc:'Escaladas %',kpi_jira_canc:'Cancel./Rejeitadas %',kpi_jira_open:'Backlog Jira em aberto',
     goal_title:'Metas do Time',goal_target:'Meta Dez',goal_ok:'Meta atingida',goal_warn:'Atenção',goal_bad:'Abaixo da meta',
     tbl_period:'Período',tbl_tickets:'Tickets',tbl_sla:'SLA 48h',
     tbl_csat:'CSAT',tbl_frt:'SLA 8h',tbl_reopen:'Reopen',
@@ -616,7 +616,7 @@ var I18N={
     sec_sla_trend:'SLA 48h Trend by Team',
     kpi_vol:'Total Tickets',kpi_sla:'SLA 48h',kpi_csat:'CSAT',kpi_frt:'SLA 8h',
     kpi_reopen:'Reopen Rate',kpi_jira_tot:'Jira Tasks',
-    kpi_jira_done:'Jira Completed',kpi_jira_esc:'Escalated %',
+    kpi_jira_done:'Jira Completed',kpi_jira_esc:'Escalated %',kpi_jira_canc:'Canceled/Rejected %',kpi_jira_open:'Open Jira backlog',
     goal_title:'Team Goals',goal_target:'Dec Target',goal_ok:'Target met',goal_warn:'Attention',goal_bad:'Below target',
     tbl_period:'Period',tbl_tickets:'Tickets',tbl_sla:'SLA 48h',
     tbl_csat:'CSAT',tbl_frt:'SLA 8h',tbl_reopen:'Reopen',
@@ -649,7 +649,7 @@ var I18N={
     sec_sla_trend:'Tendencia SLA 48h por Equipo',
     kpi_vol:'Total Tickets',kpi_sla:'SLA 48h',kpi_csat:'CSAT',kpi_frt:'SLA 8h',
     kpi_reopen:'Reopen Rate',kpi_jira_tot:'Tareas Jira',
-    kpi_jira_done:'Jira Completadas',kpi_jira_esc:'Escaladas %',
+    kpi_jira_done:'Jira Completadas',kpi_jira_esc:'Escaladas %',kpi_jira_canc:'Cancel./Rejeitadas %',kpi_jira_open:'Backlog Jira em aberto',
     goal_title:'Metas del Equipo',goal_target:'Meta Dic',goal_ok:'Meta alcanzada',goal_warn:'Atención',goal_bad:'Bajo la meta',
     tbl_period:'Período',tbl_tickets:'Tickets',tbl_sla:'SLA 48h',
     tbl_csat:'CSAT',tbl_frt:'SLA 8h',tbl_reopen:'Reopen',
@@ -1279,13 +1279,13 @@ function rT1(){
 
   /* KPIs linha 2 — Reopen + Jira do período selecionado */
   var j2026=JIRA.filter(function(j){return(!gst.fm||j.mo>=gst.fm)&&(!gst.tm||j.mo<=gst.tm)&&agentInFilter(j.k);});
-  var jTot=j2026.length,jDone=j2026.filter(function(j){return j.d;}).length,jEsc=j2026.filter(function(j){return j.esc;}).length;
-  var jDonePct=jTot>0?Math.round(jDone/jTot*100):null,jEscPct=jTot>0?Math.round(jEsc/jTot*100):null;
+  var jTot=j2026.length,jDone=j2026.filter(function(j){return j.d;}).length,jEsc=j2026.filter(function(j){return j.esc;}).length,jCanc=j2026.filter(function(j){return /^(Canceled|Rejected)/.test(j.st);}).length,jOpen=j2026.filter(function(j){return j.b||j.h||j.o;}).length;
+  var jDonePct=jTot>0?Math.round(jDone/jTot*100):null,jEscPct=jTot>0?Math.round(jEsc/jTot*100):null;var jCancPct=jTot>0?Math.round(jCanc/jTot*100):null;
   document.getElementById('k1b').innerHTML=
     '<div class="kpi re"><div class="v">'+fmtPct(reop)+'</div><div class="l">'+T('kpi_reopen')+'</div><div class="tg">'+pBadge+'</div></div>'+
     '<div class="kpi te"><div class="v">'+jTot+'</div><div class="l">'+T('kpi_jira_tot')+'</div><div class="tg">'+pBadge+'</div></div>'+
-    '<div class="kpi gr"><div class="v" style="color:'+clr(jDonePct,80,60)+'">'+fmtPct(jDonePct)+'</div><div class="l">'+T('kpi_jira_done')+'</div><div class="tg">'+pBadge+'</div></div>'+
-    '<div class="kpi re"><div class="v" style="color:'+(jEscPct!=null&&jEscPct>30?'#dc2626':'#d97706')+'">'+fmtPct(jEscPct)+'</div><div class="l">'+T('kpi_jira_esc')+'</div><div class="tg">'+pBadge+'</div></div>';
+    '<div class="kpi gr"><div class="v" style="color:'+(jOpen>20?'#dc2626':'#d97706')+'">'+jOpen+'</div><div class="l">'+T('kpi_jira_open')+'</div><div class="tg">'+pBadge+'</div></div>'+
+    '<div class="kpi re"><div class="v" style="color:'+(jCancPct!=null&&jCancPct>30?'#dc2626':'#d97706')+'">'+fmtPct(jCancPct)+'</div><div class="l">'+T('kpi_jira_canc')+'</div><div class="tg">'+pBadge+'</div></div>';
 
   var _mainTb=_curTb();
 
@@ -1745,13 +1745,13 @@ function rTSub(tb,px,kx){
   var reop2026=tot2026.vol>0?pct(tot2026.rp,tot2026.vol):null;
 
   var j2026=JIRA.filter(function(j){if(!((!gst.fm||j.mo>=gst.fm)&&(!gst.tm||j.mo<=gst.tm)))return false;var ag=AGENTS.find(function(a){return a.key===j.k;});return ag&&ag.tribe===tb&&rgMatch({rg:ag.region});});
-  var jTot=j2026.length,jDone=j2026.filter(function(j){return j.d;}).length,jEsc=j2026.filter(function(j){return j.esc;}).length;
-  var jDonePct=jTot>0?Math.round(jDone/jTot*100):null,jEscPct=jTot>0?Math.round(jEsc/jTot*100):null;
+  var jTot=j2026.length,jDone=j2026.filter(function(j){return j.d;}).length,jEsc=j2026.filter(function(j){return j.esc;}).length,jCanc=j2026.filter(function(j){return /^(Canceled|Rejected)/.test(j.st);}).length,jOpen=j2026.filter(function(j){return j.b||j.h||j.o;}).length;
+  var jDonePct=jTot>0?Math.round(jDone/jTot*100):null,jEscPct=jTot>0?Math.round(jEsc/jTot*100):null;var jCancPct=jTot>0?Math.round(jCanc/jTot*100):null;
   document.getElementById(kx+'b').innerHTML=
     '<div class="kpi re"><div class="v">'+fmtPct(reop)+'</div><div class="l">'+T('kpi_reopen')+'</div><div class="tg">'+pBadge+'</div></div>'+
     '<div class="kpi te"><div class="v">'+jTot+'</div><div class="l">'+T('kpi_jira_tot')+'</div><div class="tg">'+pBadge+'</div></div>'+
-    '<div class="kpi gr"><div class="v" style="color:'+clr(jDonePct,80,60)+'">'+fmtPct(jDonePct)+'</div><div class="l">'+T('kpi_jira_done')+'</div><div class="tg">'+pBadge+'</div></div>'+
-    '<div class="kpi re"><div class="v" style="color:'+(jEscPct!=null&&jEscPct>30?'#dc2626':'#d97706')+'">'+fmtPct(jEscPct)+'</div><div class="l">'+T('kpi_jira_esc')+'</div><div class="tg">'+pBadge+'</div></div>';
+    '<div class="kpi gr"><div class="v" style="color:'+(jOpen>20?'#dc2626':'#d97706')+'">'+jOpen+'</div><div class="l">'+T('kpi_jira_open')+'</div><div class="tg">'+pBadge+'</div></div>'+
+    '<div class="kpi re"><div class="v" style="color:'+(jCancPct!=null&&jCancPct>30?'#dc2626':'#d97706')+'">'+fmtPct(jCancPct)+'</div><div class="l">'+T('kpi_jira_canc')+'</div><div class="tg">'+pBadge+'</div></div>';
 
   rMetaRow('goals'+kx.substring(1),[
     {lb:'SLA 48h',vl:sla2026,clr:slaClr,tgLbl:_trajGoal(tb,'sla')+'%'},
