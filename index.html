@@ -1180,9 +1180,9 @@ function _slaTetoCalcPd(pds,tbFilter,useRg){
       return volT>0?Math.min(100,Math.round(f48/volT*1000)/10):null;
     })
   };
-}
-
-
+}
+
+
 
 /* ── CSAT % — geral ou por tribe ── */
 function rCsatTribeChart(canId,pds,tbFilter){
@@ -1212,7 +1212,7 @@ function rCsatScoreChart(canId,pds,tbFilter){
      borderColor:'rgba(34,197,94,0.5)',borderDash:[4,4],borderWidth:1.5,pointRadius:0,fill:false}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LEGEND_OPTS},animation:{duration:300},
     scales:{x:{grid:{display:false}},y:{min:1,max:5,title:{display:true,text:'score',font:{size:9}},ticks:{stepSize:1}}}}});
-}
+}
 /* ── Sazonalidade ── */
 function rSbsSeason(wkId,qmId,agKey){
   var mos=gMos();
@@ -1415,7 +1415,7 @@ function rT1(){
       metaLineYr(50,periods,'#E74C3C')
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},animation:{duration:300},scales:cmboScales(false)}});
   });
-
+
 
   /* SLA by tribe (bar) — bars colored by threshold */
   var _tsla48=tribes.map(function(tb){var s=agg(fRows(function(x){return x.tb===tb;}));return pct(s.f48,s.v48);});
@@ -1628,8 +1628,8 @@ function bAgBar2(){
   }).join('');
 }
 function setAg2(k){curAg2=k;bAgBar2();rT2();}
-
-
+
+
 
 /* ── Sazonalidade travada em uma sub&aacute;rea (ignora pills de Time) ── */
 function rSbsSeasonTribe(wkId,qmId,tb){
@@ -1968,7 +1968,7 @@ function rT2(){
     scales:{x:{grid:{display:false}},
       y:{min:1,max:5,title:{display:true,text:'score',font:{size:9}},ticks:{stepSize:1}},
       yv:{type:'linear',position:'right',grid:{display:false},ticks:{font:{size:9},color:'#94a3b8'}}}}});
-
+
 
   /* Participação de volume — % do SBS total e % da subárea */
   var curTribe=ag.tribe;
